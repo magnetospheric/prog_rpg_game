@@ -53,6 +53,16 @@
             </audio>
         </section>
 
+        <div id="result">
+            <div id="results-inner"></div>
+            <button name="next" onclick="activateNextSection()">NEXT</button>
+        </div>
+
+        <div id="finished" class="fin">
+            <h2>END OF THE LINE, BUDDY</h2>
+            <button name="restart" onclick="restart()">Play again?</button>
+        </div>
+
         <div id="buttons">
             <button name="prog" onclick="analyse('1')" value="prog">Prog</button>
             <button name="rpg" onclick="analyse('2')" value="rpg">RPG</button>
