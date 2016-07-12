@@ -1,9 +1,26 @@
+body {
+    margin: 0;
+}
 #game-bounds {
-    position:relative;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 0%;
+    margin:0;
+}
+#padding-wrapper {
+    padding:10%;
+    position: relative;
 }
 section {
-    position:absolute;
-    width:100%;
-    height:100%;
-    top:0;
+    width: 100%;
+    display:none;
+}
+#buttons {
+    width: 92%;
+    padding:4%;
+}
+.active{
+    display:block;
 }
