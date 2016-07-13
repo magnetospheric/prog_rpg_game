@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body onload="restart();">
 
 
 <div id="game-bounds">
@@ -18,38 +18,71 @@
 
         <h1>Prog Music or RPG Soundtrack?</h1>
 
-        <section data-name="track1" class="active uncompleted">
-            <h2> FIRST ROUND </h2>
+        <h2 class="round">First Round</h2>
+
+        <section data-name="track1" class="uncompleted">
             <audio controls="controls">
                 <source src="tracks/Track01.mp3" type="audio/mp3" />
             </audio>
         </section>
 
         <section data-name="track2" class="uncompleted">
-            <h2> SECOND ROUND </h2>
             <audio controls="controls">
                 <source src="tracks/Track02.mp3" type="audio/mp3" />
             </audio>
         </section>
 
         <section data-name="track3" class="uncompleted">
-            <h2> THIRD ROUND </h2>
             <audio controls="controls">
-                <source src="tracks/Track01.mp3" type="audio/mp3" />
+                <source src="tracks/Track03.mp3" type="audio/mp3" />
             </audio>
         </section>
 
         <section data-name="track4" class="uncompleted">
-            <h2> FOURTH ROUND </h2>
             <audio controls="controls">
-                <source src="tracks/Track01.mp3" type="audio/mp3" />
+                <source src="tracks/Track04.mp3" type="audio/mp3" />
             </audio>
         </section>
 
         <section data-name="track5" class="uncompleted">
-            <h2> FIFTH ROUND </h2>
             <audio controls="controls">
-                <source src="tracks/Track01.mp3" type="audio/mp3" />
+                <source src="tracks/Track05.mp3" type="audio/mp3" />
+            </audio>
+        </section>
+
+        <section data-name="track6" class="uncompleted">
+            <audio controls="controls">
+                <source src="tracks/Track06.mp3" type="audio/mp3" />
+            </audio>
+        </section>
+
+        <section data-name="track7" class="uncompleted">
+            <audio controls="controls">
+                <source src="tracks/Track07.mp3" type="audio/mp3" />
+            </audio>
+        </section>
+
+        <section data-name="track8" class="uncompleted">
+            <audio controls="controls">
+                <source src="tracks/Track08.mp3" type="audio/mp3" />
+            </audio>
+        </section>
+
+        <section data-name="track9" class="uncompleted">
+            <audio controls="controls">
+                <source src="tracks/Track09.mp3" type="audio/mp3" />
+            </audio>
+        </section>
+
+        <section data-name="track10" class="uncompleted">
+            <audio controls="controls">
+                <source src="tracks/Track10.mp3" type="audio/mp3" />
+            </audio>
+        </section>
+
+        <section data-name="track11" class="uncompleted">
+            <audio controls="controls">
+                <source src="tracks/Track11.mp3" type="audio/mp3" />
             </audio>
         </section>
 
@@ -63,7 +96,7 @@
             <button name="restart" onclick="restart()">Play again?</button>
         </div>
 
-        <div id="buttons">
+        <div id="buttons" class="userinput">
             <button name="prog" onclick="analyse('1')" value="prog">Prog</button>
             <button name="rpg" onclick="analyse('2')" value="rpg">RPG</button>
         </div>
