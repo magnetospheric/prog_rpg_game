@@ -5,6 +5,19 @@
 */
 
 
+
+
+
+/* ------------------------------------------ */
+/* DATA: setting up score counter             */
+/* ------------------------------------------ */
+
+var correctAnswers = 0;
+var wrongAnswers = 0;
+
+
+
+
 /* ------------------------------------------ */
 /* DATA: setting up question counter          */
 /* ------------------------------------------ */
@@ -51,7 +64,9 @@ var allTracks = {
     7: { "name": 'track8', "value": 2, "info": "It's battle music from the RPG Xenoblade Chronicles" },
     8: { "name": 'track9', "value": 2, "info": "It's music from the RPG Star Ocean 5: Integrity and Faithlessness" },
     9: { "name": 'track10', "value": 1, "info": "It's Close to the Edge by prog supergroup YES" },
-    10: { "name": 'track11', "value": 2, "info": "It's boss music from the RPG Final Fantasy VII" }
+    10: { "name": 'track11', "value": 2, "info": "It's boss music from the RPG Final Fantasy VII" },
+    11: { "name": 'track12', "value": 1, "info": "It's Mad Man Moon by Genesis" },
+    12: { "name": 'track13', "value": 2, "info": "It's music from the RPG Lost Odyssey" }
 }
 
 
@@ -69,13 +84,18 @@ function analyse(usersGuess) {
     // compare user answer with true answer
     if (usersGuess == answer["value"]) {
         resultsInner.innerHTML =  "You guessed correctly! " + answer["info"] ;
+        correctAnswers += 1;
     } else {
         resultsInner.innerHTML =  "Wrong! " + answer["info"] ;
+        wrongAnswers += 1;
     }
 
     // append child to results window and reveal
     var result = document.getElementById("result");
     result.classList.add("active");
+
+    // reset audio before moving on
+    resetAudio();
 }
 
 
@@ -104,6 +124,12 @@ function restart() {
 
     if ( questionCounter > 1 ) {
         questionCounter = 1; // reset questionCounter
+    }
+    if ( correctAnswers > 0 ) {
+        correctAnswers = 0; // reset correctAnswers
+    }
+    if ( wrongAnswers > 0 ) {
+        wrongAnswers = 0; // reset wrongAnswers
     }
 
     // reset round title
@@ -180,9 +206,16 @@ function activateNextSection() {
                         roundTitle[i].innerHTML = "";
                     }
                 }
+                // show finish box with no score data
                 var finish = document.getElementById("finished");
                 finish.classList.add("active");
+                removeElementsByClass('score-data');
 
+                // append final score data to finish box
+                var finalScorer = finalScore(questionCounter, correctAnswers, wrongAnswers);
+                finish.appendChild(finalScorer);
+
+                // remove buttons
                 var buttons = document.getElementById("buttons");
                 buttons.classList.remove("active");
             }
@@ -219,6 +252,53 @@ function findTrackNumber(trackNumber) {
 }
 
 
+
+
+/* ------------------------------------------ */
+/* FETCHER: generates final score             */
+/* accepts question#, correct & wrong ans     */
+/* and score object                           */
+/* ------------------------------------------ */
+function finalScore(questionCounter, correctAnswers, wrongAnswers) {
+    var score = document.createElement("div");
+    score.classList.add("score-data");
+    var scoreContent = '<p>You got ' + correctAnswers + '/' + ( questionCounter - 1 ) + ' answers right.</p>';
+    if ( correctAnswers > wrongAnswers ) {
+        scoreContent += 'YAY';
+    } else {
+        var scoreChoice = randomIntFromInterval(0,4); // gets 1 to 3
+        console.log(scoreChoice);
+        switch (scoreChoice) {
+            case 1:
+                // score content option 1
+                scoreContent += '<p>You need to brush up on your Genesis and Grandia,</p>';
+                scoreContent += '<p>learn the difference between a Moogle and a MOOG,</p>';
+                scoreContent += '<p>and don\'t let this be your FINAL FANTASY!</p>';
+                break;
+            case 2:
+                // score content option 2
+                scoreContent += '<p>You just couldn\'t HACKETT</p>';
+                scoreContent += '<p>But don\'t let failure CLOUD your vision...</p>';
+                scoreContent += '<p>Say YES to another round!</p>';
+                break;
+            case 3:
+                // score content option 3
+                scoreContent += '<p>Are you JUST ANOTHER BRICK IN THE WALL?</p>';
+                scoreContent += '<p>Maybe you need a phoenix down?</p>';
+                break;
+            default:
+                scoreContent += '<p>That was one tough boss gauntlet!</p>';
+        }
+
+    }
+    scoreContent += '<button id="restart-button" name="restart" onclick="restart()">Play again?</button>';
+    score.innerHTML = scoreContent;
+    return score;
+}
+
+
+
+
 /* ------------------------------------------ */
 /* HELPER: generates random number            */
 /* accepts two values: minimum and
@@ -227,4 +307,48 @@ function findTrackNumber(trackNumber) {
 function randomIntFromInterval(min,max)
 {
     return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+
+
+/* ------------------------------------------ */
+/* HELPER: removes elements by class          */
+/* accepts one value: class name              */
+/* ------------------------------------------ */
+function removeElementsByClass(className){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
+
+
+/* ------------------------------------------ */
+/* HELPER: set audio clip back to start       */
+/* accepts one value: class name              */
+/* ------------------------------------------ */
+function resetAudio() {
+    var aud = document.getElementsByClassName( 'active' );
+
+    for ( var i = 0; i < aud.length; i++ ) {
+        if ( aud[i].classList.contains( 'uncompleted' ) ) { // find correct aud
+
+            var newAud = aud[i];
+
+            for ( var j = 0; j < newAud.childNodes.length; j++ ) {
+                console.log( newAud.childNodes[j].tagName );
+                if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
+                    console.log( 'yeah audio!' );
+                    //this = newAud.childNodes[j];
+                    newAud.childNodes[j].addEventListener( "ended", function() {
+                        newAud.childNodes[j].currentTime = 0;
+                        newAud.childNodes[j].pause();
+                    });
+                }
+            }
+
+        }
+    }
+
 }

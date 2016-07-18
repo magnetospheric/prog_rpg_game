@@ -1,0 +1,109 @@
+@font-face {
+  font-family: 'rogerdean';
+  src: url('webfont/rogdean.eot'); /* IE9 Compat Modes */
+  src: url('webfont/rogdean.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('webfont/rogdean.woff') format('woff'), /* Pretty Modern Browsers */
+       url('webfont/rogdean.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont/rogdean.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+body {
+    margin: 0;
+    background:#04161f url('background.png') no-repeat;
+    background-size:cover;
+    color:#efefef;
+}
+#game-bounds {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 0%;
+    margin:0;
+}
+#padding-wrapper {
+    padding:10%;
+    position: relative;
+}
+section {
+    width: 100%;
+    display:none;
+}
+#buttons {
+    width: 92%;
+    padding:4%;
+    display:none;
+}
+#result{
+    display:none;
+    position: absolute;
+    box-shadow: 0px 0px 5px #666;
+    width: 40%;
+    top: 6%;
+    margin: 0 auto;
+    z-index: 99;
+    margin: 15%;
+    padding: 5%;
+    background-color: #fff;
+    border-radius:3px;
+}
+#finished {
+    display:none;
+}
+.active{
+    display:block!important;
+}
+
+@mixin gradient-text($text, $background, $gradient) {
+  background: white;
+  color: black;
+  position: relative;
+
+    text-shadow:
+      1px 1px 0px $background,
+      1px -1px 0px $background,
+      -1px -1px 0px $background,
+      -1px 1px 0px $background;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    pointer-events: none;
+  }
+
+  &::before {
+    background: $gradient;
+    content: '';
+    display: block;
+    mix-blend-mode: screen;
+  }
+
+  &::after {
+    content: $text;
+    background: $background;
+    color: white;
+    mix-blend-mode: multiply;
+  }
+
+}
+
+#header {
+    background-color: #04161f;
+    padding: 10px;
+}
+
+h1 {
+    font-family:"rogerdean";
+    font-size:2.5em;
+
+     @include gradient-text('Prog Music or RPG Soundtrack?', #04161f, linear-gradient(to top, #00a1b3, #cc2b5c, #fecd0c));
+}
+
+h2 {
+    text-shadow: 0px 1px 4px #04161f;
+}
