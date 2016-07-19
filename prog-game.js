@@ -54,7 +54,7 @@ var questionTitle = {
    corresponds to either prog or rpg          */
 /* ------------------------------------------ */
 var allTracks = {
-    0: { "name": 'track1', "value": 2, "info": "It's a battle theme from the RPG Tales of Zestiria" },
+    0: { "name": 'track1', "value": 2, "info": "It's a battle theme from the RPG Tales of Zestiria", "cover": "covers/zestiria.png" },
     1: { "name": 'track2', "value": 1, "info": "It's Dreamtime by the prog supergroup YES" },
     2: { "name": 'track3', "value": 2, "info": "It's a battle theme from the RPG Final Fantasy VI" },
     3: { "name": 'track4', "value": 1, "info": "It's The Wheel's Turning by prog guitarist Steve Hackett" },
@@ -76,17 +76,19 @@ var allTracks = {
 function analyse(usersGuess) {
     // create child element to populate result with
     var resultsInner = document.getElementById('results-inner');
-    resultsInner.innerHTML = "";
 
     // get true answer
     var answer = getActiveTrackData("active", "data-name");
 
+    resultsInner.innerHTML = "<span class='cover'><img src=' " + answer["cover"] +  "' /></span>" ;
+
+
     // compare user answer with true answer
     if (usersGuess == answer["value"]) {
-        resultsInner.innerHTML =  "You guessed correctly! " + answer["info"] ;
+        resultsInner.innerHTML +=  "<p>You guessed correctly! " + answer["info"] + "</p>";
         correctAnswers += 1;
     } else {
-        resultsInner.innerHTML =  "Wrong! " + answer["info"] ;
+        resultsInner.innerHTML +=  "<p>Wrong! " + answer["info"] + "</p>";
         wrongAnswers += 1;
     }
 
@@ -94,8 +96,6 @@ function analyse(usersGuess) {
     var result = document.getElementById("result");
     result.classList.add("active");
 
-    // reset audio before moving on
-    resetAudio();
 }
 
 
@@ -146,6 +146,9 @@ function restart() {
 /* ACTION: activate next question             */
 /* ------------------------------------------ */
 function activateNextSection() {
+    // reset audio before moving on
+    resetAudio();
+
     // increment question counter
     questionCounter++;
 
@@ -225,10 +228,11 @@ function activateNextSection() {
 }
 
 
+
 /* ------------------------------------------ */
 /* FETCHER: gets data for active track        */
 /* accepts two values: attribute to target
-and data value to retrieve                 */
+   and data value to retrieve                 */
 /* ------------------------------------------ */
 function getActiveTrackData(attribute, data) {
     var activeElement = document.getElementsByClassName(attribute);
@@ -337,18 +341,77 @@ function resetAudio() {
             var newAud = aud[i];
 
             for ( var j = 0; j < newAud.childNodes.length; j++ ) {
-                console.log( newAud.childNodes[j].tagName );
                 if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
-                    console.log( 'yeah audio!' );
-                    //this = newAud.childNodes[j];
-                    newAud.childNodes[j].addEventListener( "ended", function() {
-                        newAud.childNodes[j].currentTime = 0;
-                        newAud.childNodes[j].pause();
-                    });
+                    newAud.childNodes[j].currentTime = 0;
+                    newAud.childNodes[j].pause();
                 }
             }
 
         }
     }
 
+}
+
+
+
+/* ------------------------------------------ */
+/* HELPER: play or pause audio clip           */
+/* ------------------------------------------ */
+function playAudio() {
+    var aud = document.getElementsByClassName( 'active' );
+    for ( var i = 0; i < aud.length; i++ ) {
+        if ( aud[i].classList.contains( 'uncompleted' ) ) { // find correct aud
+            var newAud = aud[i];
+            for ( var j = 0; j < newAud.childNodes.length; j++ ) {
+                if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
+                    if (newAud.childNodes[j].paused) {
+                        newAud.childNodes[j].play();
+                    } else {
+                      newAud.childNodes[j].pause();
+                    }
+                }
+                if ( newAud.childNodes[j].id == "audioplayer" ) {
+                    var audioplayer = newAud.childNodes[j];
+                    for ( var k = 0; k < audioplayer.childNodes.length; k++ ) {
+                        if (audioplayer.childNodes[k].tagName == "BUTTON") {
+                            console.log("woo");
+                            if ( audioplayer.childNodes[k].classList.contains("play") ) {
+                                audioplayer.childNodes[k].classList.add("pause");
+                                audioplayer.childNodes[k].classList.remove("play");
+                            } else {
+                                audioplayer.childNodes[k].classList.add("play");
+                                audioplayer.childNodes[k].classList.remove("pause");
+                            }
+                        }
+                    }
+
+                    //newAud.childNodes[j].childNodes[0].classList.add("pause");
+                    // newAud.childNodes[j].classList.remove("play");
+                }
+                // if ( newAud.childNodes[j].classList.contains( "pause" ) ) {
+                //     // newAud.childNodes[j].classList.add("play");
+                //     // newAud.childNodes[j].classList.remove("pause");
+                // }
+            }
+        }
+    }
+}
+
+
+
+/* ------------------------------------------ */
+/* HELPER: audio volume control               */
+/* ------------------------------------------ */
+function setVolume(volume) {
+    var aud = document.getElementsByClassName( 'active' );
+    for ( var i = 0; i < aud.length; i++ ) {
+        if ( aud[i].classList.contains( 'uncompleted' ) ) { // find correct aud
+            var newAud = aud[i];
+            for ( var j = 0; j < newAud.childNodes.length; j++ ) {
+                if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
+                    newAud.childNodes[j].volume = volume;
+                }
+            }
+        }
+    }
 }

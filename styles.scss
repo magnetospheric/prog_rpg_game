@@ -7,54 +7,57 @@
        url('webfont/rogdean.svg#svgFontName') format('svg'); /* Legacy iOS */
 }
 
-body {
-    margin: 0;
-    background:#04161f url('background.png') no-repeat;
-    background-size:cover;
-    color:#efefef;
-}
-#game-bounds {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    padding: 0%;
-    margin:0;
-}
-#padding-wrapper {
-    padding:10%;
-    position: relative;
-}
-section {
-    width: 100%;
-    display:none;
-}
-#buttons {
-    width: 92%;
-    padding:4%;
-    display:none;
-}
-#result{
-    display:none;
-    position: absolute;
-    box-shadow: 0px 0px 5px #666;
-    width: 40%;
-    top: 6%;
-    margin: 0 auto;
-    z-index: 99;
-    margin: 15%;
-    padding: 5%;
-    background-color: #fff;
-    border-radius:3px;
-}
-#finished {
-    display:none;
-}
-.active{
-    display:block!important;
-}
+/*
+FONT REFERENCE
 
-@mixin gradient-text($text, $background, $gradient) {
+font-family:'Ainslie W01 Norm Thin';
+font-family:'Ainslie W01 Norm Thin Italic';
+font-family:'Ainslie W01 Norm Light';
+font-family:'Ainslie W01 Norm Light Italic';
+font-family:'Ainslie W01 Norm Book';
+font-family:'Ainslie W01 Norm Book Italic';
+font-family:'Ainslie W01 Norm Regular';
+font-family:'Ainslie W01 Norm Regular It';
+font-family:'Ainslie W01 Norm Medium';
+font-family:'Ainslie W01 Norm Medium Italic';
+font-family:'Ainslie W01 Norm Demi';
+font-family:'Ainslie W01 Norm Demi Italic';
+font-family:'Ainslie W01 Norm Bold';
+font-family:'Ainslie W01 Norm Bold Italic';
+font-family:'Ainslie W01 Cond Light';
+font-family:'Ainslie W01 Cond Thin';
+font-family:'Ainslie W01 Cond Thin Italic';
+font-family:'Ainslie W01 Cond Light Italic';
+font-family:'Ainslie W01 Cond Book';
+font-family:'Ainslie W01 Cond Book Italic';
+font-family:'Ainslie W01 Cond Regular';
+font-family:'Ainslie W01 Cond Regular It';
+font-family:'Ainslie W01 Cond Medium';
+font-family:'Ainslie W01 Cond Medium Italic';
+font-family:'Ainslie W01 Cond Demi';
+font-family:'Ainslie W01 Cond Demi Italic';
+font-family:'Ainslie W01 Cond Bold';
+font-family:'Ainslie W01 Cond Bold Italic';
+font-family:'Ainslie W01 Ext Thin';
+font-family:'Ainslie W01 Ext Thin Italic';
+font-family:'Ainslie W01 Ext Light';
+font-family:'Ainslie W01 Ext Light Italic';
+font-family:'Ainslie W01 Ext Book';
+font-family:'Ainslie W01 Ext Book Italic';
+font-family:'Ainslie W01 Ext Regular';
+font-family:'Ainslie W01 Ext Regular Italic';
+font-family:'Ainslie W01 Ext Medium';
+font-family:'Ainslie W01 Ext Medium Italic';
+font-family:'Ainslie W01 Ext Demi';
+font-family:'Ainslie W01 Ext Demi Italic';
+font-family:'Ainslie W01 Ext Bold';
+font-family:'Ainslie W01 Ext Bold Italic';
+font-family:'Belshaw W01';
+font-family:'Diablo W01';
+
+
+*/
+@mixin gradient-text($text, $background, $gradient, $shadow) {
   background: white;
   color: black;
   position: relative;
@@ -72,7 +75,6 @@ section {
     right: 0;
     bottom: 0;
     left: 0;
-
     pointer-events: none;
   }
 
@@ -88,22 +90,252 @@ section {
     background: $background;
     color: white;
     mix-blend-mode: multiply;
+    text-shadow: 2px 2px 1px $shadow;
   }
 
 }
+body {
+    margin: 0;
+    color: #efefef;
+    font-family: 'Ainslie w01 Norm Bold', sans-serif;
+    #game-bounds {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 0%;
+        margin: 0;
+        background: #fff url('background.png') no-repeat;
+        background-size: cover;
+        background-position: 0px 100px;
+    }
+    #header {
+        background: -moz-linear-gradient(top, #2f3b5b 97%, rgba(2,99,139,0.6) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #2f3b5b 97%,rgba(2,99,139,0.6) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #2f3b5b 97%,rgba(2,99,139,0.6) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+        padding: 2% 25% 3% 25%;
+        border-radius: 4px;
+        box-shadow: 1px 1px 9px rgba(254, 205, 12, 0.2), -1px -1px 9px rgba(204, 43, 92, 0.2);
+        h1 {
+            font-family: "rogerdean";
+            text-shadow: 1px 1px 1px #1f2e32;
+            font-size: 3em;
+            margin: 0em;
+            @include gradient-text( 'Prog Music or RPG Soundtrack?', #2f3b5b, linear-gradient( to top, #00a1b3, #cc2b5c, #fecd0c ), rgba(47, 182, 149, 0.9) );
+        }
+    }
+    #padding-wrapper {
+        padding: 0;
+        position: relative;
+        height: 79%;
+        #inner-wrapper {
+            background: rgba(236, 236, 230, 0.9);
+            border-radius: 5px;
+            border: 1px solid rgba(30, 115, 104, 0.9);
+            margin: 10% 25%;
+            box-shadow: 1px 1px 7px rgba(45, 85, 85, 0.3);
+            h2 {
+                text-shadow: 0px 1px 4px #1f2e32, 2px 2px 12px rgba(0, 0, 0, 0.5);
+                font-family: 'Ainslie w01 Norm Bold';
+                font-size: 1.7em;
+                text-transform: uppercase;
+                background: rgba(47, 182, 149, 0.77);
+                margin: 0;
+                padding: 4% 0;
+                border-radius: 4px 4px 0 0;
+                border-bottom: 1px solid rgba(30, 115, 104, 0.2);
+                color: rgba(255, 255, 245, 0.98);
+            }
+            section {
+                width: 100%;
+                display: none;
+                position: relative;
+                audio {
+                    display: none;
+                }
+                audio::-webkit-media-controls-panel {
+                    padding: 20px;
+                }
+                audio::-webkit-media-controls-play-button {
+                    padding: 50px;
+                }
+                #audioplayer {
+                    width: 56%;
+                    margin: 0 auto;
+                    position: relative;
+                    height: auto;
+                    display: block;
+                    background: rgba(255, 255, 255, 0.8);
+                    padding: 2%;
+                    min-height: 60px;
+                    margin-top: 8%;
+                    box-shadow: 0px 0px 6px rgba(30, 115, 104, 0.2);
+                    button{
+                        border: none;
+                        background: transparent;
+                        position: absolute;
+                        top: 12%;
+                        left: 14%;
+                        height: 60px;
+                        width: 60px;
+                        cursor: pointer;
+                    }
+                    button:focus {
+                        outline: 0!important;
+                    }
+                    .play {
+                        overflow: hidden;
+                        box-shadow: -17px 0px 10px -20px rgba(0, 0, 0, 0.6);
+                    }
+                    .play:after {
+                        content: "";
+                        position: absolute;
+                        width: 50%;
+                        height: 50%;
+                        background: rgba(47, 182, 149, 0.9);
+                        transform: rotate(45deg); /* Prefixes... */
+                        top: 25%;
+                        right: 75%;
+                        box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.6);
+                    }
+                    .pause span {
+                        transform: rotate(90deg);
+                    }
+                    .pause span,
+                    .pause span:before {
+                        cursor: pointer;
+                        border-radius: 3px;
+                        height: 11px;
+                        width: 37px;
+                        background: rgba(47, 182, 149, 0.9);
+                        position: absolute;
+                        left: -13px;
+                        display: block;
+                        content: '';
+                        border: none;
+                        margin-top: -8px;
+                        top: 33px;
+                    }
+                    .pause span:before {
+                        top: -10px;
+                        left: 0;
+                    }
+                    #volume_control {
+                        position: absolute;
+                        right: 12%;
+                        width: 58%;
+                        top: 25%;
+                        label {
+                            color: rgba(255, 255, 245, 0.98);
+                            text-shadow: 1px 1px 24px rgba(45, 85, 85, 0.4), 1px 1px 3px rgba(0, 0, 0, 0.3);
+                            text-transform: uppercase;
+                            font-size: 1.2em;
+                        }
+                    }
+                }
+            }
+            #buttons {
+                width: 92%;
+                padding: 4%;
+                display: none;
+                button {
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 4px;
+                    color: rgba(255, 255, 245, 0.98);
+                    text-transform: uppercase;
+                    padding: 3.5% 8%;
+                    margin: 5%;
+                    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+                    font-size: 1.7em;
+                    font-family: 'Diablo W01', sans-serif;
+                    font-weight: 200;
+                    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+                    outline: none;
+                }
+                button:focus {
+                    outline: 0!important;
+                }
+                .prog {
+                    background: rgb(0,161,179); /* Old browsers */
+                    background: -moz-linear-gradient(top, rgba(0,161,179,1) 0%, rgba(204,43,92,1) 100%); /* FF3.6-15 */
+                    background: -webkit-linear-gradient(top, rgba(0,161,179,1) 0%,rgba(204,43,92,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                    background: linear-gradient(to bottom, rgba(0,161,179,1) 0%,rgba(204,43,92,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a1b3', endColorstr='#cc2b5c',GradientType=0 ); /* IE6-9 */
+                }
+                .rpg {
+                    background: rgb(204,43,92); /* Old browsers */
+                    background: -moz-linear-gradient(top, rgba(204,43,92,1) 1%, rgba(254,205,12,1) 100%); /* FF3.6-15 */
+                    background: -webkit-linear-gradient(top, rgba(204,43,92,1) 1%,rgba(254,205,12,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                    background: linear-gradient(to bottom, rgba(204,43,92,1) 1%,rgba(254,205,12,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc2b5c', endColorstr='#fecd0c',GradientType=0 ); /* IE6-9 */
+                }
+            }
+        }
+    }
 
-#header {
-    background-color: #04161f;
-    padding: 10px;
-}
+    #result{
+        display: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height:100%;
+        margin: 0 auto;
+        z-index: 99;
+        #result-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 70%;
 
-h1 {
-    font-family:"rogerdean";
-    font-size:2.5em;
-
-     @include gradient-text('Prog Music or RPG Soundtrack?', #04161f, linear-gradient(to top, #00a1b3, #cc2b5c, #fecd0c));
-}
-
-h2 {
-    text-shadow: 0px 1px 4px #04161f;
+            background-color: #ececec;
+            box-shadow: 0px 0px 5px #666;
+            border-radius: 3px;
+            #results-inner {
+                text-transform: uppercase;
+                color: rgba(255, 255, 245, 0.98);
+                text-shadow: 1px 1px 24px rgba(45, 85, 85, 0.5), 1px 1px 3px rgba(0, 0, 0, 0.3);
+                padding: 8% 3%;
+                .cover {
+                    display: block;
+                    margin: 0 auto;
+                    max-width: 87%;
+                    img {
+                        width: 100%;
+                        margin: 0 auto;
+                        box-shadow: 0px 0px 6px #666;
+                    }
+                }
+                p {
+                    padding: 0 6%;
+                }
+            }
+            button {
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 0px 0px 4px 4px;
+                color: rgba(255, 255, 245, 0.98);
+                text-transform: uppercase;
+                padding: 3.5% 8%;
+                margin: 0 auto;
+                box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+                font-size: 1.7em;
+                font-family: 'Diablo W01', sans-serif;
+                font-weight: 200;
+                text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+                outline: none;
+                background: rgba(47, 182, 149, 0.9);
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+    #finished {
+        display: none;
+    }
+    .active{
+        display: block!important;
+    }
 }
