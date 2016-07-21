@@ -110,15 +110,16 @@ body {
   body #padding-wrapper {
     padding: 0;
     position: relative;
-    height: 79%; }
+    height: 100%; }
     body #padding-wrapper #inner-wrapper {
       background: rgba(236, 236, 230, 0.9);
       border-radius: 5px;
       border: 1px solid rgba(30, 115, 104, 0.9);
-      margin: 10% 25%;
-      box-shadow: 1px 1px 7px rgba(45, 85, 85, 0.3); }
+      margin: 10% 25% 0%;
+      box-shadow: 1px 1px 7px rgba(45, 85, 85, 0.3);
+      position: relative; }
       body #padding-wrapper #inner-wrapper h2 {
-        text-shadow: 0px 1px 4px #1f2e32, 2px 2px 12px rgba(0, 0, 0, 0.5);
+        text-shadow: 0px 1px 3px #1f2e32;
         font-family: 'Ainslie w01 Norm Bold';
         font-size: 1.7em;
         text-transform: uppercase;
@@ -199,8 +200,8 @@ body {
             width: 58%;
             top: 25%; }
             body #padding-wrapper #inner-wrapper section #audioplayer #volume_control label {
-              color: rgba(255, 255, 245, 0.98);
-              text-shadow: 1px 1px 24px rgba(45, 85, 85, 0.4), 1px 1px 3px rgba(0, 0, 0, 0.3);
+              color: rgba(47, 182, 149, 0.9);
+              text-shadow: 1px 1px 1px rgba(47, 182, 149, 0.9), 1px 1px 3px rgba(47, 182, 149, 0.3);
               text-transform: uppercase;
               font-size: 1.2em; }
       body #padding-wrapper #inner-wrapper #buttons {
@@ -219,7 +220,8 @@ body {
           font-family: 'Diablo W01', sans-serif;
           font-weight: 200;
           text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
-          outline: none; }
+          outline: none;
+          cursor: pointer; }
         body #padding-wrapper #inner-wrapper #buttons button:focus {
           outline: 0 !important; }
         body #padding-wrapper #inner-wrapper #buttons .prog {
@@ -258,25 +260,32 @@ body {
       top: 50%;
       transform: translate(-50%, -50%);
       width: 50%;
-      height: 70%;
+      height: auto;
       background-color: #ececec;
       box-shadow: 0px 0px 5px #666;
       border-radius: 3px; }
-      body #result #result-container #results-inner {
+      body #result #result-container #result-inner {
         text-transform: uppercase;
         color: rgba(255, 255, 245, 0.98);
         text-shadow: 1px 1px 24px rgba(45, 85, 85, 0.5), 1px 1px 3px rgba(0, 0, 0, 0.3);
-        padding: 8% 3%; }
-        body #result #result-container #results-inner .cover {
+        padding: 8% 3% 14%; }
+        body #result #result-container #result-inner .cover {
           display: block;
           margin: 0 auto;
           max-width: 87%; }
-          body #result #result-container #results-inner .cover img {
+          body #result #result-container #result-inner .cover img {
             width: 100%;
             margin: 0 auto;
             box-shadow: 0px 0px 6px #666; }
-        body #result #result-container #results-inner p {
-          padding: 0 6%; }
+        body #result #result-container #result-inner p {
+          padding: 0 6%;
+          color: #2fb695;
+          font-size: 1.1em; }
+        body #result #result-container #result-inner p.success {
+          text-shadow: 1px 1px 1px rgba(47, 182, 149, 0.9), 1px 1px 3px rgba(47, 182, 149, 0.3), 1px 1px 5px white, 0px 0px 8px white, 0px 0px 10px white, 0px 0px 15px white, 0px 0px 24px white, 0px 0px 24px white; }
+        body #result #result-container #result-inner p.fail {
+          color: #cc2b5c;
+          text-shadow: 1px 1px 1px rgba(204, 43, 92, 0.9), 1px 1px 3px rgba(204, 43, 92, 0.3), 1px 1px 5px white, 0px 0px 8px white, 0px 0px 10px white, 0px 0px 15px white, 0px 0px 24px white, 0px 0px 24px white; }
       body #result #result-container button {
         border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 0px 0px 4px 4px;
@@ -293,10 +302,142 @@ body {
         background: rgba(47, 182, 149, 0.9);
         width: 100%;
         position: absolute;
-        bottom: 0; }
+        bottom: 0;
+        left: 0;
+        cursor: pointer; }
+      body #result #result-container button.failNext {
+        background: #cc2b5c; }
   body #finished {
-    display: none; }
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    z-index: 99; }
+    body #finished #finished-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 46%;
+      height: auto;
+      background: #2fb695;
+      box-shadow: 0px 0px 5px #666;
+      border-radius: 3px;
+      min-height: 19%;
+      color: rgba(255, 255, 245, 0.98);
+      text-shadow: 0px 1px 3px #1f2e32;
+      font-family: 'Ainslie w01 Norm Bold';
+      padding: 2% 2% 6%;
+      font-size: 1.2em;
+      text-align: center; }
+      body #finished #finished-container button {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        color: rgba(255, 255, 245, 0.98);
+        text-transform: uppercase;
+        padding: 3.5% 8%;
+        margin: 5%;
+        box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+        font-size: 1.7em;
+        font-family: 'Diablo W01', sans-serif;
+        font-weight: 200;
+        text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+        outline: none;
+        cursor: pointer;
+        font-size: 1.0em; }
+      body #finished #finished-container button:focus {
+        outline: 0 !important; }
+      body #finished #finished-container #restart-button {
+        background: #00a1b3;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #00a1b3 0%, #cc2b5c 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #00a1b3 0%, #cc2b5c 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #00a1b3 0%, #cc2b5c 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a1b3', endColorstr='#cc2b5c',GradientType=0 );
+        /* IE6-9 */ }
+    body #finished #finished-container.lose {
+      background: #cc2b5c; }
+      body #finished #finished-container.lose #restart-button {
+        background: #cc2b5c;
+        /* Old browsers */
+        background: -moz-linear-gradient(top, #cc2b5c 1%, #fecd0c 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #cc2b5c 1%, #fecd0c 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #cc2b5c 1%, #fecd0c 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc2b5c', endColorstr='#fecd0c',GradientType=0 );
+        /* IE6-9 */ }
+    body #finished #finished-container.ultimate-win {
+      background: #2f3b5b; }
   body .active {
     display: block !important; }
+  body .hidden {
+    display: none !important; }
+
+@media (max-width: 650px) {
+  body #padding-wrapper #header {
+    padding: 2% 10% 5% 10%; }
+    body #padding-wrapper #header h1 {
+      font-size: 2.6em; }
+  body #padding-wrapper #inner-wrapper {
+    margin: 10% 10% 0%; }
+    body #padding-wrapper #inner-wrapper #buttons button {
+      font-size: 1.4em; }
+  body #result #result-container {
+    width: 79.5%;
+    min-height: 40%; }
+    body #result #result-container #result-inner p {
+      font-size: 1em; }
+  body #finished #finished-container {
+    width: 76%;
+    min-height: 40%; } }
+@media (max-width: 400px) {
+  body #padding-wrapper #header {
+    padding: 2% 10% 6% 10%; }
+    body #padding-wrapper #header h1 {
+      font-size: 2.1em; }
+  body #padding-wrapper #inner-wrapper h2 {
+    font-size: 1.1em; }
+  body #padding-wrapper #inner-wrapper section #audioplayer button {
+    position: relative; }
+  body #padding-wrapper #inner-wrapper section #audioplayer .play {
+    position: relative; }
+  body #padding-wrapper #inner-wrapper section #audioplayer #volume_control {
+    position: relative;
+    top: 0;
+    right: 0%;
+    width: 100%;
+    font-size: 0.8em; }
+    body #padding-wrapper #inner-wrapper section #audioplayer #volume_control input {
+      width: 75%; }
+  body #result #result-container {
+    width: 79.5%;
+    min-height: 40%; }
+    body #result #result-container #result-inner p {
+      font-size: 0.8em; }
+  body #finished #finished-container {
+    width: 76%;
+    min-height: 40%; } }
+@media (min-width: 1120px) {
+  body #padding-wrapper #inner-wrapper {
+    margin: 10% 30.5% 0%; }
+    body #padding-wrapper #inner-wrapper section #audioplayer button {
+      left: 9%; }
+    body #padding-wrapper #inner-wrapper section #audioplayer #volume_control {
+      position: absolute;
+      right: 8%;
+      width: 68%;
+      top: 35%; }
+      body #padding-wrapper #inner-wrapper section #audioplayer #volume_control input[type="range" i] {
+        width: 42%; }
+  body #result #result-container {
+    top: 52%;
+    width: 39%; } }
 
 /*# sourceMappingURL=styles.css.map */

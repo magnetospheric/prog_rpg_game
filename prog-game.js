@@ -55,18 +55,18 @@ var questionTitle = {
 /* ------------------------------------------ */
 var allTracks = {
     0: { "name": 'track1', "value": 2, "info": "It's a battle theme from the RPG Tales of Zestiria", "cover": "covers/zestiria.png" },
-    1: { "name": 'track2', "value": 1, "info": "It's Dreamtime by the prog supergroup YES" },
-    2: { "name": 'track3', "value": 2, "info": "It's a battle theme from the RPG Final Fantasy VI" },
-    3: { "name": 'track4', "value": 1, "info": "It's The Wheel's Turning by prog guitarist Steve Hackett" },
-    4: { "name": 'track5', "value": 1, "info": "It's ATLAS by Italian proggers The Watch" },
-    5: { "name": 'track6', "value": 1, "info": "It's Qoquaq En Transic by YES frontman Jon Anderson" },
-    6: { "name": 'track7', "value": 2, "info": "It's Gadwin's theme from the RPG Grandia" },
-    7: { "name": 'track8', "value": 2, "info": "It's battle music from the RPG Xenoblade Chronicles" },
-    8: { "name": 'track9', "value": 2, "info": "It's music from the RPG Star Ocean 5: Integrity and Faithlessness" },
-    9: { "name": 'track10', "value": 1, "info": "It's Close to the Edge by prog supergroup YES" },
-    10: { "name": 'track11', "value": 2, "info": "It's boss music from the RPG Final Fantasy VII" },
-    11: { "name": 'track12', "value": 1, "info": "It's Mad Man Moon by Genesis" },
-    12: { "name": 'track13', "value": 2, "info": "It's music from the RPG Lost Odyssey" }
+    1: { "name": 'track2', "value": 1, "info": "It's Dreamtime by the prog supergroup YES", "cover": "covers/magnification.png" },
+    2: { "name": 'track3', "value": 2, "info": "It's a battle theme from the RPG Final Fantasy VI", "cover": "covers/ff6.png" },
+    3: { "name": 'track4', "value": 1, "info": "It's The Wheel's Turning by prog guitarist Steve Hackett", "cover": "covers/hackett.png" },
+    4: { "name": 'track5', "value": 1, "info": "It's ATLAS by Italian proggers The Watch", "cover": "covers/thewatch.png" },
+    5: { "name": 'track6', "value": 1, "info": "It's Qoquaq En Transic by YES frontman Jon Anderson", "cover": "covers/sunhillow.png" },
+    6: { "name": 'track7', "value": 2, "info": "It's Gadwin's theme from the RPG Grandia", "cover": "covers/grandia.png" },
+    7: { "name": 'track8', "value": 2, "info": "It's battle music from the RPG Xenoblade Chronicles", "cover": "covers/xenoblade.png" },
+    8: { "name": 'track9', "value": 2, "info": "It's music from the RPG Star Ocean 5: Integrity and Faithlessness", "cover": "covers/starocean.png" },
+    9: { "name": 'track10', "value": 1, "info": "It's Close to the Edge by prog supergroup YES", "cover": "covers/edge.png" },
+    10: { "name": 'track11', "value": 2, "info": "It's boss music from the RPG Final Fantasy VII", "cover": "covers/ff7.png" },
+    11: { "name": 'track12', "value": 1, "info": "It's Mad Man Moon by Genesis", "cover": "covers/madmanmoon.png" },
+    12: { "name": 'track13', "value": 2, "info": "It's music from the RPG Lost Odyssey", "cover": "covers/lostodyssey.png" }
 }
 
 
@@ -75,20 +75,28 @@ var allTracks = {
 /* ------------------------------------------ */
 function analyse(usersGuess) {
     // create child element to populate result with
-    var resultsInner = document.getElementById('results-inner');
+    var resultInner = document.getElementById('result-container');
 
     // get true answer
     var answer = getActiveTrackData("active", "data-name");
 
-    resultsInner.innerHTML = "<span class='cover'><img src=' " + answer["cover"] +  "' /></span>" ;
+    var cover = "<span class='cover'><img src=' " + answer["cover"] +  "' /></span>" ;
 
 
     // compare user answer with true answer
     if (usersGuess == answer["value"]) {
-        resultsInner.innerHTML +=  "<p>You guessed correctly! " + answer["info"] + "</p>";
+        resultInner.innerHTML =  "<div id='result-inner'>"
+                                + cover
+                                + "<p class='success'>You guessed correctly!  "
+                                + answer["info"]
+                                + "</p><button class='successNext' name='next' onclick='activateNextSection();'>NEXT</button></div>";
         correctAnswers += 1;
     } else {
-        resultsInner.innerHTML +=  "<p>Wrong! " + answer["info"] + "</p>";
+        resultInner.innerHTML = "<div id='result-inner'>"
+                                + cover
+                                + "<p class='fail'>Wrong!  "
+                                + answer["info"]
+                                + "</p><button class='failNext' name='next' onclick='activateNextSection();'>NEXT</button></div>";
         wrongAnswers += 1;
     }
 
@@ -113,6 +121,10 @@ function restart() {
         }
         sections[i].classList.remove("completed");
     }
+
+    // show inner wrap panel
+    var innerWrap = document.getElementById("inner-wrapper");
+    innerWrap.classList.remove("hidden");
 
     // hide finish panel
     var finish = document.getElementById("finished");
@@ -139,6 +151,14 @@ function restart() {
             roundTitle[i].innerHTML = "First Round";
         }
     }
+
+    var pausedElements = document.getElementsByClassName("pause");
+
+    for ( var j = 0; j < pausedElements.length; j++ ) {
+        console.log('element ' + j);
+        pausedElements[j].classList.add("play");
+        pausedElements[j].classList.remove("pause");
+    }
 }
 
 
@@ -153,8 +173,8 @@ function activateNextSection() {
     questionCounter++;
 
     // wipe results contents and hide results box
-    var resultsInner = document.getElementById("results-inner");
-    resultsInner.innerHTML = "";
+    var resultInner = document.getElementById("result-container");
+    resultInner.innerHTML = "";
     var result = document.getElementById("result");
     result.classList.remove("active");
 
@@ -209,14 +229,18 @@ function activateNextSection() {
                         roundTitle[i].innerHTML = "";
                     }
                 }
+                var innerWrap = document.getElementById("inner-wrapper");
+                innerWrap.classList.add("hidden");
+
                 // show finish box with no score data
                 var finish = document.getElementById("finished");
+                var finishContainer = document.getElementById("finished-container");
                 finish.classList.add("active");
                 removeElementsByClass('score-data');
 
                 // append final score data to finish box
                 var finalScorer = finalScore(questionCounter, correctAnswers, wrongAnswers);
-                finish.appendChild(finalScorer);
+                finishContainer.appendChild(finalScorer);
 
                 // remove buttons
                 var buttons = document.getElementById("buttons");
@@ -265,13 +289,53 @@ function findTrackNumber(trackNumber) {
 /* ------------------------------------------ */
 function finalScore(questionCounter, correctAnswers, wrongAnswers) {
     var score = document.createElement("div");
+    var finalBox = document.getElementById("finished-container");
     score.classList.add("score-data");
-    var scoreContent = '<p>You got ' + correctAnswers + '/' + ( questionCounter - 1 ) + ' answers right.</p>';
-    if ( correctAnswers > wrongAnswers ) {
-        scoreContent += 'YAY';
+    var scoreContent = '';
+    if ( correctAnswers == ( questionCounter - 1 ) ) {
+        finalBox.classList.remove("lose");
+        finalBox.classList.add("ultimate-win");
+        scoreContent += '<h2>ULTIMATE WIN</h2>';
+        scoreContent += '<p>You got ' + correctAnswers + '/' + ( questionCounter - 1 ) + ' answers right.</p>';
+        scoreContent += '<p>All our bass are belong to you</p>';
+        scoreContent += '<p>Seriously, you\'re the overlord of prog and RPGs here</p>';
+    }
+    else if ( correctAnswers > wrongAnswers ) {
+        finalBox.classList.remove("lose");
+        finalBox.classList.remove("ultimate-win");
+        scoreContent += '<h2>MOSTLY PERFECT</h2>';
+        scoreContent += '<p>You got ' + correctAnswers + '/' + ( questionCounter - 1 ) + ' answers right.</p>';
+        var scoreChoice = randomIntFromInterval(0,3); // gets 1 to 3
+        switch (scoreChoice) {
+            case 1:
+                // score content option 1
+                scoreContent += '<p>You\'re a master of the MOOG,</p>';
+                scoreContent += '<p>A synth sorcerer,</p>';
+                scoreContent += '<p>A time-signature tactician</p>';
+                break;
+            case 2:
+                // score content option 2
+                scoreContent += '<p>You\'re living CLOSE TO THE EDGE,</p>';
+                scoreContent += '<p>In no RUSH to prove yourself,</p>';
+                scoreContent += '<p>and not even Sephiroth could get you down!</p>';
+                break;
+            case 3:
+                // score content option 3
+                scoreContent += '<p>You seem to be a seasoned progger</p>';
+                scoreContent += '<p>Or perhaps a battle-scarred mage</p>';
+                scoreContent += '<p>Either way, well done! Now, can you beat your high score?</p>';
+                break;
+            default:
+                scoreContent += '<p>You seem to be a seasoned progger</p>';
+                scoreContent += '<p>Or perhaps a battle-scarred mage</p>';
+                scoreContent += '<p>Either way, well done! Now, can you beat your high score?</p>';
+        }
     } else {
-        var scoreChoice = randomIntFromInterval(0,4); // gets 1 to 3
-        console.log(scoreChoice);
+        finalBox.classList.add("lose");
+        finalBox.classList.remove("ultimate-win");
+        scoreContent += '<h2>END OF THE LINE, BUDDY</h2>';
+        scoreContent += '<p>You got ' + correctAnswers + '/' + ( questionCounter - 1 ) + ' answers right.</p>';
+        var scoreChoice = randomIntFromInterval(0,3); // gets 1 to 3
         switch (scoreChoice) {
             case 1:
                 // score content option 1
@@ -333,10 +397,18 @@ function removeElementsByClass(className){
 /* accepts one value: class name              */
 /* ------------------------------------------ */
 function resetAudio() {
+
     var aud = document.getElementsByClassName( 'active' );
 
     for ( var i = 0; i < aud.length; i++ ) {
         if ( aud[i].classList.contains( 'uncompleted' ) ) { // find correct aud
+
+            var pausedElements = aud[i].getElementsByClassName("pause");
+
+            for ( var j = 0; j < pausedElements.length; j++ ) {
+                pausedElements[j].classList.add("play");
+                pausedElements[j].classList.remove("pause");
+            }
 
             var newAud = aud[i];
 

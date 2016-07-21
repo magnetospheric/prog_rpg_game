@@ -128,15 +128,16 @@ body {
     #padding-wrapper {
         padding: 0;
         position: relative;
-        height: 79%;
+        height: 100%;
         #inner-wrapper {
             background: rgba(236, 236, 230, 0.9);
             border-radius: 5px;
             border: 1px solid rgba(30, 115, 104, 0.9);
-            margin: 10% 25%;
+            margin: 10% 25% 0%;
             box-shadow: 1px 1px 7px rgba(45, 85, 85, 0.3);
+            position: relative;
             h2 {
-                text-shadow: 0px 1px 4px #1f2e32, 2px 2px 12px rgba(0, 0, 0, 0.5);
+                text-shadow: 0px 1px 3px #1f2e32;
                 font-family: 'Ainslie w01 Norm Bold';
                 font-size: 1.7em;
                 text-transform: uppercase;
@@ -227,8 +228,12 @@ body {
                         width: 58%;
                         top: 25%;
                         label {
-                            color: rgba(255, 255, 245, 0.98);
-                            text-shadow: 1px 1px 24px rgba(45, 85, 85, 0.4), 1px 1px 3px rgba(0, 0, 0, 0.3);
+                            // color: rgba(255, 255, 245, 0.98);
+                            color: rgba(47, 182, 149, 0.9);
+                            text-shadow:
+                                        1px 1px 1px rgba(47, 182, 149, 0.9),
+                                        1px 1px 3px rgba(47, 182, 149, 0.3)
+                                        ;
                             text-transform: uppercase;
                             font-size: 1.2em;
                         }
@@ -252,6 +257,7 @@ body {
                     font-weight: 200;
                     text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
                     outline: none;
+                    cursor: pointer;
                 }
                 button:focus {
                     outline: 0!important;
@@ -288,16 +294,16 @@ body {
             top: 50%;
             transform: translate(-50%, -50%);
             width: 50%;
-            height: 70%;
+            height: auto;
 
             background-color: #ececec;
             box-shadow: 0px 0px 5px #666;
             border-radius: 3px;
-            #results-inner {
+            #result-inner {
                 text-transform: uppercase;
                 color: rgba(255, 255, 245, 0.98);
                 text-shadow: 1px 1px 24px rgba(45, 85, 85, 0.5), 1px 1px 3px rgba(0, 0, 0, 0.3);
-                padding: 8% 3%;
+                padding: 8% 3% 14%;
                 .cover {
                     display: block;
                     margin: 0 auto;
@@ -310,6 +316,33 @@ body {
                 }
                 p {
                     padding: 0 6%;
+                    color: rgba(47, 182, 149, 1);
+                    font-size: 1.1em;
+                }
+                p.success {
+                    text-shadow:
+                            1px 1px 1px rgba(47, 182, 149, 0.9),
+                            1px 1px 3px rgba(47, 182, 149, 0.3),
+                            1px 1px 5px rgba(255, 255, 255, 1),
+                            0px 0px 8px rgba(255, 255, 255, 1),
+                            0px 0px 10px rgba(255, 255, 255, 1),
+                            0px 0px 15px rgba(255, 255, 255, 1),
+                            0px 0px 24px rgba(255, 255, 255, 1),
+                            0px 0px 24px rgba(255, 255, 255, 1)
+                            ;
+                }
+                p.fail {
+                    color: rgba(204, 43, 92, 1);
+                    text-shadow:
+                            1px 1px 1px rgba(204, 43, 92, 0.9),
+                            1px 1px 3px rgba(204, 43, 92, 0.3),
+                            1px 1px 5px rgba(255, 255, 255, 1),
+                            0px 0px 8px rgba(255, 255, 255, 1),
+                            0px 0px 10px rgba(255, 255, 255, 1),
+                            0px 0px 15px rgba(255, 255, 255, 1),
+                            0px 0px 24px rgba(255, 255, 255, 1),
+                            0px 0px 24px rgba(255, 255, 255, 1)
+                            ;
                 }
             }
             button {
@@ -329,13 +362,209 @@ body {
                 width: 100%;
                 position: absolute;
                 bottom: 0;
+                left: 0;
+                cursor: pointer;
+            }
+            button.failNext {
+                background: rgba(204, 43, 92, 1);
             }
         }
     }
     #finished {
         display: none;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height:100%;
+        margin: 0 auto;
+        z-index: 99;
+        #finished-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 46%;
+            height: auto;
+            background: rgba(47, 182, 149, 1);
+            box-shadow: 0px 0px 5px #666;
+            border-radius: 3px;
+            min-height: 19%;
+            color: rgba(255, 255, 245, 0.98);
+            text-shadow: 0px 1px 3px #1f2e32;
+            font-family: 'Ainslie w01 Norm Bold';
+            padding: 2% 2% 6%;
+            font-size: 1.2em;
+            text-align: center;
+            button {
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 4px;
+                color: rgba(255, 255, 245, 0.98);
+                text-transform: uppercase;
+                padding: 3.5% 8%;
+                margin: 5%;
+                box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.4);
+                font-size: 1.7em;
+                font-family: 'Diablo W01', sans-serif;
+                font-weight: 200;
+                text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+                outline: none;
+                cursor: pointer;
+                font-size: 1.0em;
+            }
+            button:focus {
+                outline: 0!important;
+            }
+            #restart-button {
+                background: rgb(0,161,179); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(0,161,179,1) 0%, rgba(204,43,92,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(0,161,179,1) 0%,rgba(204,43,92,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba(0,161,179,1) 0%,rgba(204,43,92,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a1b3', endColorstr='#cc2b5c',GradientType=0 ); /* IE6-9 */
+            }
+        }
+        #finished-container.lose {
+            background: rgba(204, 43, 92, 1);
+            #restart-button {
+                background: rgb(204,43,92); /* Old browsers */
+                background: -moz-linear-gradient(top, rgba(204,43,92,1) 1%, rgba(254,205,12,1) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba(204,43,92,1) 1%,rgba(254,205,12,1) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba(204,43,92,1) 1%,rgba(254,205,12,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc2b5c', endColorstr='#fecd0c',GradientType=0 ); /* IE6-9 */
+            }
+        }
+        #finished-container.ultimate-win {
+            background: rgba(47, 59, 91, 1);
+        }
     }
     .active{
         display: block!important;
+    }
+    .hidden{
+        display: none!important;
+    }
+}
+
+@media (max-width: 650px) {
+    body {
+        #padding-wrapper {
+            #header {
+                padding: 2% 10% 5% 10%;
+                h1 {
+                    font-size: 2.6em;
+                }
+            }
+            #inner-wrapper {
+                margin: 10% 10% 0%;
+                #buttons {
+                    button {
+                        font-size: 1.4em;
+                    }
+                }
+            }
+        }
+        #result {
+            #result-container {
+                width: 79.5%;
+                min-height: 40%;
+                #result-inner {
+                    p {
+                        font-size: 1em;
+                    }
+                }
+            }
+        }
+        #finished {
+            #finished-container {
+                width: 76%;
+                min-height: 40%;
+            }
+        }
+    }
+}
+@media (max-width: 400px) {
+    body {
+        #padding-wrapper {
+            #header {
+                padding: 2% 10% 6% 10%;
+                h1 {
+                    font-size: 2.1em;
+                }
+            }
+            #inner-wrapper {
+                h2 {
+                    font-size: 1.1em;
+                }
+                section {
+                    #audioplayer {
+                        button {
+                            position: relative;
+                        }
+                        .play {
+                            position: relative;
+                        }
+                        #volume_control {
+                            position: relative;
+                            top: 0;
+                            right: 0%;
+                            width: 100%;
+                            font-size: 0.8em;
+                            input {
+                                width: 75%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #result {
+            #result-container {
+                width: 79.5%;
+                min-height: 40%;
+                #result-inner {
+                    p {
+                        font-size: 0.8em;
+                    }
+                }
+            }
+        }
+        #finished {
+            #finished-container {
+                width: 76%;
+                min-height: 40%;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1120px) {
+    body {
+        #padding-wrapper {
+            #inner-wrapper {
+                margin: 10% 30.5% 0%;
+                section {
+                    #audioplayer {
+                        button {
+                            left: 9%;
+                        }
+                        #volume_control {
+                            position: absolute;
+                            right: 8%;
+                            width: 68%;
+                            top: 35%;
+                            input[type="range" i] {
+                                width: 42%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #result{
+            #result-container {
+                top: 52%;
+                width: 39%;
+            }
+        }
     }
 }
