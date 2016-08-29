@@ -26,6 +26,7 @@
 
             <section data-name="track5" class="uncompleted">
                 <div id="audioplayer">
+                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -42,6 +43,7 @@
 
             <section data-name="track1" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -58,6 +60,7 @@
 
             <section data-name="track2" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -74,6 +77,7 @@
 
             <section data-name="track3" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -90,6 +94,7 @@
 
             <section data-name="track4" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -106,6 +111,7 @@
 
             <section data-name="track6" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -122,6 +128,7 @@
 
             <section data-name="track7" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -138,6 +145,7 @@
 
             <section data-name="track8" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -154,6 +162,7 @@
 
             <section data-name="track9" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -170,6 +179,7 @@
 
             <section data-name="track10" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -186,6 +196,7 @@
 
             <section data-name="track11" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -202,6 +213,7 @@
 
             <section data-name="track12" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -218,6 +230,7 @@
 
             <section data-name="track13" class="uncompleted">
                 <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
                         <div id="playhead"></div>
@@ -231,6 +244,127 @@
                     <source src="tracks/Track13.mp3" type="audio/mp3" />
                 </audio>
             </section>
+
+            <section data-name="track14" class="uncompleted">
+                <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <div id="volume_control">
+                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+                <audio controls="controls">
+                    <source src="tracks/Track14.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
+            <section data-name="track15" class="uncompleted">
+                <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <div id="volume_control">
+                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+                <audio controls="controls">
+                    <source src="tracks/Track15.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
+            <section data-name="track16" class="uncompleted">
+                <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <div id="volume_control">
+                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+                <audio controls="controls">
+                    <source src="tracks/Track16.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
+            <section data-name="track17" class="uncompleted">
+                <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <div id="volume_control">
+                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+                <audio controls="controls">
+                    <source src="tracks/Track17.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
+            <section data-name="track18" class="uncompleted">
+                <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <div id="volume_control">
+                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+                <audio controls="controls">
+                    <source src="tracks/Track18.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
+            <section data-name="track19" class="uncompleted">
+                <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <div id="volume_control">
+                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+                <audio controls="controls">
+                    <source src="tracks/Track19.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
+            <section data-name="track20" class="uncompleted">
+                <div id="audioplayer">
+                   <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                    <div id="timeline">
+                        <div id="playhead"></div>
+                    </div>
+                    <div id="volume_control">
+                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                </div>
+                <audio controls="controls">
+                    <source src="tracks/Track20.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
+
 
             <div id="buttons" class="userinput">
                 <button class="prog" name="prog" onclick="analyse('1')" value="prog">Prog</button>

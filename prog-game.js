@@ -66,7 +66,14 @@ var allTracks = {
     9: { "name": 'track10', "value": 1, "info": "It's Close to the Edge by prog supergroup YES", "cover": "covers/edge.png" },
     10: { "name": 'track11', "value": 2, "info": "It's boss music from the RPG Final Fantasy VII", "cover": "covers/ff7.png" },
     11: { "name": 'track12', "value": 1, "info": "It's Mad Man Moon by Genesis", "cover": "covers/madmanmoon.png" },
-    12: { "name": 'track13', "value": 2, "info": "It's music from the RPG Lost Odyssey", "cover": "covers/lostodyssey.png" }
+    12: { "name": 'track13', "value": 2, "info": "It's music from the RPG Lost Odyssey", "cover": "covers/lostodyssey.png" },
+    13: { "name": 'track14', "value": 1, "info": "It's Round Square by Polish prog band Art of Illusion", "cover": "covers/artofillusion.png" },
+    14: { "name": 'track15', "value": 2, "info": "It's battle music from the RPG Grandia II", "cover": "covers/grandia2.png" },
+    15: { "name": 'track16', "value": 1, "info": "It's L'estremo Viaggiatore by prog band Gran Turismo Veloce", "cover": "covers/granturismoveloce.png" },
+    16: { "name": 'track17', "value": 2, "info": "It's music from the RPG Skies of Arcadia", "cover": "covers/soa.png" },
+    17: { "name": 'track18', "value": 1, "info": "It's Mad Maze by prog group Sun Domingo", "cover": "covers/sundomingo.png" },
+    18: { "name": 'track19', "value": 2, "info": "It's music from the RPG Chrono Cross", "cover": "covers/chronocross.png" },
+    19: { "name": 'track20', "value": 1, "info": "It's Awaken by prog supergroup YES", "cover": "covers/awaken.png" }
 }
 
 
@@ -405,6 +412,7 @@ function resetAudio() {
 
             var pausedElements = aud[i].getElementsByClassName("pause");
 
+            // changes all pause icons back to play icons, ready for next game
             for ( var j = 0; j < pausedElements.length; j++ ) {
                 pausedElements[j].classList.add("play");
                 pausedElements[j].classList.remove("pause");
@@ -412,6 +420,7 @@ function resetAudio() {
 
             var newAud = aud[i];
 
+            // set audio object timeline to 0
             for ( var j = 0; j < newAud.childNodes.length; j++ ) {
                 if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
                     newAud.childNodes[j].currentTime = 0;
@@ -436,39 +445,70 @@ function playAudio() {
             var newAud = aud[i];
             for ( var j = 0; j < newAud.childNodes.length; j++ ) {
                 if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
+
+                    // Updates timeline
+                    var duration;
+                    var music = document.getElementById('playhead');
+                    music.addEventListener("timeupdate", timeUpdate, false);
+
+                    function timeUpdate() {
+                    	var playPercent = 100 * (music.currentTime / duration);
+                    	playhead.style.marginLeft = playPercent + "%";
+                    }
+
+                    // Gets audio file duration
+                    music.addEventListener("canplaythrough", function () {
+                    	duration = music.duration;
+                    }, false);
                     if (newAud.childNodes[j].paused) {
                         newAud.childNodes[j].play();
                     } else {
                       newAud.childNodes[j].pause();
                     }
                 }
+                // add and remove classes for play/pause button only
                 if ( newAud.childNodes[j].id == "audioplayer" ) {
                     var audioplayer = newAud.childNodes[j];
                     for ( var k = 0; k < audioplayer.childNodes.length; k++ ) {
                         if (audioplayer.childNodes[k].tagName == "BUTTON") {
-                            console.log("woo");
-                            if ( audioplayer.childNodes[k].classList.contains("play") ) {
-                                audioplayer.childNodes[k].classList.add("pause");
-                                audioplayer.childNodes[k].classList.remove("play");
-                            } else {
-                                audioplayer.childNodes[k].classList.add("play");
-                                audioplayer.childNodes[k].classList.remove("pause");
+                            if ( !audioplayer.childNodes[k].classList.contains("rewind") ) {
+                                if ( audioplayer.childNodes[k].classList.contains("play") ) {
+                                    audioplayer.childNodes[k].classList.add("pause");
+                                    audioplayer.childNodes[k].classList.remove("play");
+                                } else {
+                                    audioplayer.childNodes[k].classList.add("play");
+                                    audioplayer.childNodes[k].classList.remove("pause");
+                                }
                             }
                         }
                     }
-
-                    //newAud.childNodes[j].childNodes[0].classList.add("pause");
-                    // newAud.childNodes[j].classList.remove("play");
                 }
-                // if ( newAud.childNodes[j].classList.contains( "pause" ) ) {
-                //     // newAud.childNodes[j].classList.add("play");
-                //     // newAud.childNodes[j].classList.remove("pause");
-                // }
             }
         }
     }
 }
 
+
+
+/* ------------------------------------------ */
+/* HELPER: rewind current audio clip           */
+/* ------------------------------------------ */
+function rewindAudio() {
+    var aud = document.getElementsByClassName( 'active' );
+    for ( var i = 0; i < aud.length; i++ ) {
+        if ( aud[i].classList.contains( 'uncompleted' ) ) { // find correct aud
+
+            var newAud = aud[i];
+
+            // set audio object timeline to 0
+            for ( var j = 0; j < newAud.childNodes.length; j++ ) {
+                if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
+                    newAud.childNodes[j].currentTime = 0;
+                }
+            }
+        }
+    }
+}
 
 
 /* ------------------------------------------ */

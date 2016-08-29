@@ -177,10 +177,13 @@ body {
                         background: transparent;
                         position: absolute;
                         top: 12%;
-                        left: 14%;
+                        left: 18%;
                         height: 60px;
                         width: 60px;
                         cursor: pointer;
+                        &#pButton {
+                            left:20%;
+                        }
                     }
                     button:focus {
                         outline: 0!important;
@@ -222,10 +225,54 @@ body {
                         top: -10px;
                         left: 0;
                     }
+                    .rewind {
+                        left: -4%;
+                    }
+                    .rewind span {
+                        border: none;
+                        background: transparent;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 60px;
+                        width: 60px;
+                        cursor: pointer;
+                    }
+                    .rewind span.one {
+                        overflow: hidden;
+                        box-shadow: -17px 0px -10px -20px rgba(0, 0, 0, 0.6);
+                    }
+                    .rewind span.one:after {
+                        content: "";
+                        position: absolute;
+                        width: 50%;
+                        height: 50%;
+                        background: rgba(47, 182, 149, 0.9);
+                        transform: rotate(45deg); /* Prefixes... */
+                        top: 25%;
+                        left: 75%;
+                        box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.6);
+                    }
+                    .rewind span.two {
+                        overflow: hidden;
+                        box-shadow: -17px 0px -10px -20px rgba(0, 0, 0, 0.6);
+                        left: -28%;
+                    }
+                    .rewind span.two:after {
+                        content: "";
+                        position: absolute;
+                        width: 50%;
+                        height: 50%;
+                        background: rgba(47, 182, 149, 0.9);
+                        transform: rotate(45deg); /* Prefixes... */
+                        top: 25%;
+                        left: 75%;
+                        box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.6);
+                    }
                     #volume_control {
                         position: absolute;
                         right: 12%;
-                        width: 58%;
+                        width: 50%;
                         top: 25%;
                         label {
                             // color: rgba(255, 255, 245, 0.98);
@@ -237,6 +284,21 @@ body {
                             text-transform: uppercase;
                             font-size: 1.2em;
                         }
+                    }
+                    #timeline{
+                        width: 400px;
+                        height: 20px;
+                        background: #4200f7;
+                        margin-top: 20px;
+                        float: left;
+                        border-radius: 15px;
+                    }
+                    #playhead{
+                        width: 18px;
+                        height: 18px;
+                        border-radius: 50%;
+                        margin-top: 1px;
+                        background: rgba(0, 255, 196, 0.82);
                     }
                 }
             }
@@ -545,12 +607,18 @@ body {
                 section {
                     #audioplayer {
                         button {
-                            left: 9%;
+                            left: 13%;
+                            &#pButton {
+                                left: 20%
+                            }
+                            &.rewind {
+                                left: -4%;
+                            }
                         }
                         #volume_control {
                             position: absolute;
                             right: 8%;
-                            width: 68%;
+                            width: 60%;
                             top: 35%;
                             input[type="range" i] {
                                 width: 42%;
