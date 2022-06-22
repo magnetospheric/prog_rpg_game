@@ -23,14 +23,12 @@ font-family:'Diablo W01';
 body {
   margin: 0;
   color: #efefef;
-  background-color: #20233d;
   font-family: "ainslie", sans-serif;
 }
 body #game-bounds {
   position: relative;
   width: 100%;
   height: fit-content;
-  min-height: 624px;
   text-align: center;
   padding: 0%;
   margin: 0;
@@ -530,4 +528,4 @@ body .hidden {
   }
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=styles.css'.map */
