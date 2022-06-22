@@ -3,8 +3,6 @@
 <head>
 
     <title>Prog or RPG?</title>
-
-    <link type="text/css" rel="stylesheet" href="//fast.fonts.net/cssapi/07aa1f3f-75ad-4b21-9a33-f861703da2fe.css"/>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script type="text/javascript" src="prog-game.js"></script>
 
@@ -24,36 +22,19 @@
         <div id="inner-wrapper">
             <h2 class="round">First Round</h2>
 
-            <section data-name="track5" class="uncompleted">
-                <div id="audioplayer">
-                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
-                    <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
-                    <div id="timeline">
-                        <div id="playhead"></div>
-                    </div>
-                    <div id="volume_control">
-                        <label id="rngVolume_label" for="rngVolume">Volume:</label>
-                        <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
-                    </div>
-                </div>
-                <audio controls="controls">
-                    <source src="tracks/Track05.mp3" type="audio/mp3" />
-                </audio>
-            </section>
-
             <section data-name="track1" class="uncompleted">
                 <div id="audioplayer">
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
-                    <div id="timeline">
-                        <div id="playhead"></div>
-                    </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
                         <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
                     </div>
+                    <div id="timeline">
+                        <div id="playhead-track1" class="playhead-button"></div>
+                    </div>
                 </div>
-                <audio controls="controls">
+                <audio class="audio-track1">
                     <source src="tracks/Track01.mp3" type="audio/mp3" />
                 </audio>
             </section>
@@ -62,12 +43,12 @@
                 <div id="audioplayer">
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
-                    <div id="timeline">
-                        <div id="playhead"></div>
-                    </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
                         <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                    </div>
+                    <div id="timeline">
+                        <div id="playhead-track2" class="playhead-button"></div>
                     </div>
                 </div>
                 <audio controls="controls">
@@ -80,7 +61,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track3" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -97,7 +78,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track4" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -109,12 +90,29 @@
                 </audio>
             </section>
 
+            <section data-name="track5" class="uncompleted">
+                  <div id="audioplayer">
+                      <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
+                      <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
+                      <div id="timeline">
+                          <div id="playhead-track5" class="playhead-button"></div>
+                      </div>
+                      <div id="volume_control">
+                          <label id="rngVolume_label" for="rngVolume">Volume:</label>
+                          <input type="range" onchange="setVolume(this.value)" id="rngVolume" min="0" max="1" step="0.01" value="1">
+                      </div>
+                  </div>
+                <audio controls="controls">
+                    <source src="tracks/Track05.mp3" type="audio/mp3" />
+                </audio>
+            </section>
+
             <section data-name="track6" class="uncompleted">
                 <div id="audioplayer">
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track6" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -131,7 +129,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track7" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -148,7 +146,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track8" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -165,7 +163,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track9" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -182,7 +180,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track10" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -199,7 +197,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track11" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -216,7 +214,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track12" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -233,7 +231,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track13" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -250,7 +248,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track14" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -267,7 +265,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track15" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -284,7 +282,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track16" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -301,7 +299,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track17" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -318,7 +316,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track18" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -335,7 +333,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track19" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>
@@ -352,7 +350,7 @@
                    <button id="rewindButton" class="rewind" onclick="rewindAudio()"><span class="one"></span><span class="two"></span></button>
                     <button id="pButton" class="play" onclick="playAudio()"><span></span></button>
                     <div id="timeline">
-                        <div id="playhead"></div>
+                        <div id="playhead-track20" class="playhead-button"></div>
                     </div>
                     <div id="volume_control">
                         <label id="rngVolume_label" for="rngVolume">Volume:</label>

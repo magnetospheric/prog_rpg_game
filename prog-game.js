@@ -443,17 +443,22 @@ function playAudio() {
     for ( var i = 0; i < aud.length; i++ ) {
         if ( aud[i].classList.contains( 'uncompleted' ) ) { // find correct aud
             var newAud = aud[i];
+            var dataname = newAud.getAttribute('data-name');
             for ( var j = 0; j < newAud.childNodes.length; j++ ) {
                 if ( newAud.childNodes[j].tagName == "AUDIO" ) { // find correct child
 
                     // Updates timeline
                     var duration;
-                    var music = document.getElementById('playhead');
-                    music.addEventListener("timeupdate", timeUpdate, false);
+                    var music = document.getElementById('playhead-' + dataname);
+                    var currentAudioElement = newAud.childNodes[j];
 
-                    function timeUpdate() {
-                    	var playPercent = 100 * (music.currentTime / duration);
-                    	playhead.style.marginLeft = playPercent + "%";
+                    newAud.childNodes[j].addEventListener("timeupdate",  function(){
+                        UpdateMe(currentAudioElement, music);
+                    }, false);
+
+                    function UpdateMe(currentAudioElement, music) {
+                    	var playPercent = 100 * (currentAudioElement.currentTime / currentAudioElement.duration);
+                    	music.style.marginLeft = playPercent + "%";
                     }
 
                     // Gets audio file duration
